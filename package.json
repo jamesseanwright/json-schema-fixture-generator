@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Generate fixtures for JSON Schema definitions",
   "repository": "https://github.com/jamesseanwright/json-schema-fixture-generator",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "eslint src && mocha src/**/*.test.js"
+    "test": "eslint src && mocha lib/**/*.test.js"
   },
   "keywords": [
     "json",
