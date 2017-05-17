@@ -24,4 +24,72 @@ describe('the createFixtureFromSchema function', function () {
 
         expect(actualFixture).to.deep.equal(expectedFixture);
     });
+
+    it('should create a list of items for properties with type `array`', function () {
+        const schema = {
+            id: 'id',
+
+            properties: {
+                strings: {
+                    type: 'array',
+                    items: {
+                        type: 'string'
+                    }
+                },
+
+                numbers: {
+                    type: 'array',
+                    items: {
+                        type: 'number'
+                    }
+                },
+
+                booleans: {
+                    type: 'array',
+                    items: {
+                        type: 'boolean'
+                    }
+                }
+            }
+        };
+
+        const expectedFixture = {
+            strings: ['random-string', 'random-string', 'random-string'],
+            numbers: [1, 1, 1],
+            booleans: [true, true, true]
+        };
+
+        const actualFixture = createFixtureFromSchema(schema);
+
+        expect(actualFixture).to.deep.equal(expectedFixture);
+    });
+
+    it('should support recursive arrays', function () {
+        const schema = {
+            id: 'id',
+
+            properties: {
+                strings: {
+                    type: 'array',
+                    items: {
+                        type: 'array',
+                        items: {
+                            type: 'array',
+                            items: {
+                                type: 'string'
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const expectedFixture = {
+            strings: [[['random-string', 'random-string', 'random-string']]]
+        };
+
+        const actualFixture = createFixtureFromSchema(schema);
+
+        expect(actualFixture).to.deep.equal(expectedFixture);
+    });
 });

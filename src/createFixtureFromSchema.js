@@ -11,6 +11,12 @@ const valueGenerators = {
 
     boolean() {
         return true;
+    },
+
+    array(value) {
+        return value.items.type === 'array'
+            ? [this[value.items.type](value.items)]
+            : new Array(3).fill(this[value.items.type](value.items));
     }
 };
 
@@ -34,7 +40,7 @@ module.exports = function createFixtureFromSchema(schema) {
     const fixture = {};
 
     for (let { key, value } of iterableSchema) {
-        fixture[key] = valueGenerators[value.type]();
+        fixture[key] = valueGenerators[value.type](value);
     }
 
     return fixture;
