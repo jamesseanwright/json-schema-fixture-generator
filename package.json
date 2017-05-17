@@ -5,7 +5,7 @@
   "repository": "https://github.com/jamesseanwright/json-schema-fixture-generator",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "eslint src && mocha src/**/*.test.js"
   },
   "keywords": [
     "json",
@@ -17,8 +17,9 @@
   "author": "James Wright <james@jamesswright.co.uk>",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.4.1",
-    "sinon": "^2.2.0"
+    "chai": "3.5.0",
+    "eslint": "3.19.0",
+    "mocha": "3.4.1",
+    "sinon": "2.2.0"
   }
 }

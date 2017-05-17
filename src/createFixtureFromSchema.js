@@ -52,6 +52,6 @@ function createSchemaSubTree(iterableSchema) {
 function createFixtureFromSchema(schema) {
     const iterableSchema = createIterableSchema(schema);
     return createSchemaSubTree(iterableSchema);
-};
+}
 
 module.exports = createFixtureFromSchema;

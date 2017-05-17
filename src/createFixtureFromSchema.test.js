@@ -1,5 +1,6 @@
 'use strict';
 
+const { expect } = require('chai');
 const createFixtureFromSchema = require('./createFixtureFromSchema');
 
 describe('the createFixtureFromSchema function', function () {
