@@ -14,7 +14,7 @@ const valueGenerators = {
     }
 };
 
-module.exports = function createFixtureFromSchema(schema) {
+function createIterableSchema(schema) {
     const iterableSchema = Object.assign({}, schema, {
         [Symbol.iterator]: function* iterator() {
             for (let key in iterableSchema.properties) {
@@ -26,6 +26,11 @@ module.exports = function createFixtureFromSchema(schema) {
         }
     });
 
+    return iterableSchema;
+}
+
+module.exports = function createFixtureFromSchema(schema) {
+    const iterableSchema = createIterableSchema(schema);
     const fixture = {};
 
     for (let { key, value } of iterableSchema) {
