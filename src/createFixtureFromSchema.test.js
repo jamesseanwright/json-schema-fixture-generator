@@ -92,4 +92,36 @@ describe('the createFixtureFromSchema function', function () {
 
         expect(actualFixture).to.deep.equal(expectedFixture);
     });
+
+    it('should support objects', function () {
+        const schema = {
+            id: 'id',
+
+            properties: {
+                foo: {
+                    type: "object",
+                    properties: {
+                        bar: {
+                            type: 'string'
+                        },
+
+                        baz: {
+                            type: 'number'
+                        }
+                    }
+                }
+            }
+        };
+
+        const expectedFixture = {
+            foo: {
+                bar: 'random-string',
+                baz: 1
+            }
+        };
+
+        const actualFixture = createFixtureFromSchema(schema);
+
+        expect(actualFixture).to.deep.equal(expectedFixture);
+    });
 });
