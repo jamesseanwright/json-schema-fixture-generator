@@ -1,0 +1,23 @@
+{
+  "name": "json-schema-test-generator",
+  "version": "0.0.1",
+  "description": "Automatically generate unit tests to verify the integrity of JSON Schemas",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "validator",
+    "tests",
+    "testing"
+  ],
+  "author": "James Wright <james@jamesswright.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.1",
+    "sinon": "^2.2.0"
+  }
+}
