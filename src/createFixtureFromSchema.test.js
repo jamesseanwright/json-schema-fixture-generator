@@ -99,7 +99,7 @@ describe('the createFixtureFromSchema function', function () {
 
             properties: {
                 foo: {
-                    type: "object",
+                    type: 'object',
                     properties: {
                         bar: {
                             type: 'string'
@@ -117,6 +117,47 @@ describe('the createFixtureFromSchema function', function () {
             foo: {
                 bar: 'random-string',
                 baz: 1
+            }
+        };
+
+        const actualFixture = createFixtureFromSchema(schema);
+
+        expect(actualFixture).to.deep.equal(expectedFixture);
+    });
+
+    it('should support nested objects', function () {
+        const schema = {
+            id: 'id',
+
+            properties: {
+                foo: {
+                    type: 'object',
+                    properties: {
+                        bar: {
+                            type: 'object',
+                            properties: {
+                                baz: {
+                                    type: 'object',
+                                    properties: {
+                                        string: {
+                                            type: 'string'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const expectedFixture = {
+            foo: {
+                bar: {
+                    baz: {
+                        string: 'random-string'
+                    }
+                }
             }
         };
 
