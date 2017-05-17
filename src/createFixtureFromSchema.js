@@ -13,15 +13,13 @@ const valueGenerators = {
         return true;
     },
 
-    array(keyValuePair, schemaProp) {
-        const value = keyValuePair ? keyValuePair.value : schemaProp;
-
+    array(value) {
         return value.items.type === 'array'
-            ? [this[value.items.type](null, value.items)]
-            : new Array(3).fill(this[value.items.type](null, value.items));
+            ? [this[value.items.type](value.items)]
+            : new Array(3).fill(this[value.items.type](value.items));
     },
 
-    object({ key, value }) {
+    object(value) {
         return createFixtureFromSchema(value);
     }
 };
@@ -44,8 +42,8 @@ function createIterableSchema(schema) {
 function createSchemaSubTree(iterableSchema) {
     const fixture = {};
 
-    for (let keyValuePair of iterableSchema) {
-        fixture[keyValuePair.key] = valueGenerators[keyValuePair.value.type](keyValuePair);
+    for (let { key, value } of iterableSchema) {
+        fixture[key] = valueGenerators[value.type](value);
     }
 
     return fixture;
@@ -56,4 +54,4 @@ function createFixtureFromSchema(schema) {
     return createSchemaSubTree(iterableSchema);
 };
 
-module.exports = createFixtureFromSchema
+module.exports = createFixtureFromSchema;
